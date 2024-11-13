@@ -1,0 +1,71 @@
+# Maven specific files
+target/
+*.log
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+
+# IntelliJ IDEA specific files
+.idea/
+*.iml
+*.iws
+out/
+
+# Eclipse specific files
+.project
+.classpath
+.settings/
+
+# NetBeans specific files
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# VS Code specific files
+.vscode/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Logs and database settings
+logs/
+*.log
+*.properties~
+*.log.*
+*.db
+*.db-journal
+
+# MySQL configuration and sensitive data files
+mysql-dump.sql
+.env
+
+# Tomcat and server specific files
+tomcat/
+*.war
+*.jar
+
+# Other files generated during the build
+*.class
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Temporary files and backups
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# Ignore sensitive data files
+secrets.txt
+application-*.properties
+
