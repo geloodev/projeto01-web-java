@@ -39,4 +39,13 @@
         <servlet-name>EditClientServlet</servlet-name>
         <url-pattern>/editar-cliente</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MembershipAndDiscountServlet</servlet-name>
+        <servlet-class>com.projeto01_web.servlets.MembershipAndDiscountServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MembershipAndDiscountServlet</servlet-name>
+        <url-pattern>/planos</url-pattern>
+    </servlet-mapping>
 </web-app>

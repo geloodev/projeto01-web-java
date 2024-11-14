@@ -5,7 +5,11 @@ import java.util.List;
 import java.util.UUID;
 
 import com.projeto01_web.dao.ClientDAO;
+import com.projeto01_web.dao.DiscountDAO;
+import com.projeto01_web.dao.MembershipDAO;
 import com.projeto01_web.dto.ClientDTO;
+import com.projeto01_web.dto.DiscountDTO;
+import com.projeto01_web.dto.MembershipDTO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -15,13 +19,14 @@ import jakarta.servlet.http.HttpServletResponse;
 public class ClientServlet extends HttpServlet {
 
     private ClientDAO clientDAO = new ClientDAO();
+    private MembershipDAO membershipDAO = new MembershipDAO();
+    private DiscountDAO discountDAO = new DiscountDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<ClientDTO> clients = clientDAO.getAllClients();
         request.setAttribute("clients", clients);
-        request.setAttribute("randomId", UUID.randomUUID().toString());
         request.getRequestDispatcher("listClients.jsp").forward(request, response);
     }
 
@@ -38,8 +43,12 @@ public class ClientServlet extends HttpServlet {
             String name = request.getParameter("name");
             String email = request.getParameter("email");
             String phone = request.getParameter("phone");
+            UUID membership_id = UUID.fromString(request.getParameter("membership"));
+            UUID discount_id = UUID.fromString(request.getParameter("discount"));
 
-            ClientDTO client = new ClientDTO(name, email, phone);
+            MembershipDTO membership = membershipDAO.getMembershipById(membership_id);
+            DiscountDTO discount = discountDAO.getDiscountById(discount_id);
+            ClientDTO client = new ClientDTO(name, email, phone, membership, discount);
             clientDAO.saveClient(client);
 
             response.sendRedirect("");
@@ -53,7 +62,15 @@ public class ClientServlet extends HttpServlet {
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
-        ClientDTO client = new ClientDTO(id, name, email, phone);
+        UUID membership_id = UUID.fromString(request.getParameter("membership"));
+        UUID discount_id = UUID.fromString(request.getParameter("discount"));
+
+        ClientDTO client = new ClientDTO(id, name, email, phone,
+                membershipDAO.getMembershipById(membership_id),
+                discountDAO.getDiscountById(discount_id));
+        System.out.println("Client created on ClientServlet.doPut: " +
+                client.getId() + client.getName() +
+                client.getMembership().getName());
         clientDAO.updateClient(client);
 
         response.sendRedirect("");

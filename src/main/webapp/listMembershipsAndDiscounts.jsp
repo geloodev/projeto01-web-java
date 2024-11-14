@@ -1,7 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%@ page import="java.util.List" %>
-<%@ page import="com.projeto01_web.dto.ClientDTO" %>
+<%@ page import="com.projeto01_web.dto.DiscountDTO" %>
+<%@ page import="com.projeto01_web.dto.MembershipDTO" %>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -9,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Clientes</title>
+    <title>Lista de Planos</title>
     <link rel="stylesheet" href="css/style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -35,12 +36,12 @@
                 GymMan
             </div>
             <div class='sidebar-items'>
-                <a href='clientes' class='sidebar-item selected'>
+                <a href='clientes' class='sidebar-item'>
                     <i class='bx bxs-user-rectangle'></i>
                     Clientes
                 </a>
 
-                <a href='planos' class='sidebar-item'>
+                <a href='planos' class='sidebar-item selected'>
                     <i class='bx bxs-credit-card-front'></i>
                     Planos
                 </a>
@@ -48,13 +49,7 @@
         </div>
 
         <div class='content'>
-            <h2 class='content-title'>Todos os Clientes</h2>
-
-            <div class='new-client-div'>
-                <a href='novo-cliente' class='new-client-button'>
-                    <i class='bx bxs-user-plus'></i>Novo Cliente
-                </a>
-            </div>
+            <h2 class='content-title'>Todos os Planos</h2>
 
             <div class='table'>
                 <div class='table-header'>
@@ -62,9 +57,7 @@
                         <thead>
                             <tr>
                                 <th class='th-name'>Nome</th>
-                                <th class='th-contacts'>Contatos</th>
-                                <th class='th-plan'>Plano</th>
-                                <th class='th-actions'>Ações</th>
+                                <th class='th-price'>Preço</th>
                             </tr>
                         </thead>
                     </table>
@@ -74,46 +67,57 @@
                     <table cellpadding='0' cellspacing='0' border='0'>
                         <tbody>
                             <%
-                                List<ClientDTO> clients = (List<ClientDTO>) request.getAttribute("clients");
-                                if (clients != null) {
-                                    for (ClientDTO client : clients) {
+                                List<MembershipDTO> memberships = (List<MembershipDTO>) 
+                                    request.getAttribute("memberships");
+                                if (memberships != null) {
+                                    for (MembershipDTO membership : memberships) {
                             %>
                             <tr>
                                 <td class='td-name'>
-                                    <div>
-                                        <img src='assets/user.svg' />
-                                        <%= client.getName() %>
-                                    </div>
+                                    <%= membership.getName() %>
                                 </td>
-                                <td class='td-contacts'>
-                                    <span><%= client.getPhone() %></span><br>
-                                    <span class="email">
-                                        <%= client.getEmail() %>
-                                    </span>
+                                <td class='td-price'>
+                                    R$<%= membership.getPrice() %>0
                                 </td>
-                                <td class='td-plan'>
-                                    <%= client.getMembership().getName() %>
+                            </tr>
+                            <%
+                                    }
+                                }
+                            %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <h2 class='content-title'>Todos os Discontos</h2>
+
+            <div class='table'>
+                <div class='table-header'>
+                    <table cellpadding='0' cellspacing='0' border='0'>
+                        <thead>
+                            <tr>
+                                <th class='th-duration'>Duração (Meses)</th>
+                                <th class='th-discount'>Desconto Mensal (%)</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+                <div class='table-content'>
+                    <table cellpadding='0' cellspacing='0' border='0'>
+                        <tbody>
+                            <%
+                                List<DiscountDTO> discounts = (List<DiscountDTO>)
+                                    request.getAttribute("discounts");
+                                if (discounts != null) {
+                                    for (DiscountDTO discount : discounts) {
+                            %>
+                            <tr>
+                                <td class='td-duration'>
+                                    <%= discount.getDuration() %>
                                 </td>
-                                <td class='td-actions'>
-                                    <div>
-                                        <a href='editar-cliente?id=<%= client.getId() %>'
-                                            class='action'>
-                                            Editar
-                                        </a>
-                                        <form action="clientes" method="post" 
-                                                style="display:inline;">
-                                            <input type="hidden" name="id" 
-                                                value="<%= client.getId() %>" 
-                                            />
-                                            <input type="hidden" name="_method" 
-                                                value="DELETE" 
-                                            />
-                                            <button type="submit" class='action'
-                                                onclick="return confirm('Tem certeza que deseja excluir?')">
-                                                Deletar
-                                            </button>
-                                        </form>
-                                    </div>
+                                <td class='td-price'>
+                                    <%= discount.getDiscountPercentage() %>%
                                 </td>
                             </tr>
                             <%

@@ -1,0 +1,88 @@
+:root {
+    --color-green-1: #C3F8C8;
+    --color-green-2: #36F54B;
+    --color-green-3: #0DE023;
+    --color-green-4: #03BE15;
+    --color-green-5: #029D10;
+    --color-white-1: #FBFEFF;
+    --color-white-2: #F8F5EE;
+    --color-white-3: #E3D7BB;
+    --color-white-4: #C3B596;
+    --color-white-5: #A49372;
+    --color-gray-1: #EDF0F4;
+    --color-blue-500: #3b82f6;
+
+    --fs-1: 3.5rem;
+    --fs-2: 2.5rem;
+    --fs-3: 2rem;
+    --fs-4: 1.5rem;
+    --fs-5: 1.125rem;
+    --fs-6: 1rem;
+    --fs-7: 0.8rem;
+    --fs-8: 0.5rem;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.5;
+    background: var(--color-gray-1);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: 800;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    all: unset;
+}
+
+a:hover,
+button:hover {
+    cursor: pointer;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.wrapper {
+    max-width: 90rem;
+    margin-inline: auto;
+    padding: 1.5rem;
+}
