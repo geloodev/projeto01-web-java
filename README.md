@@ -2,6 +2,8 @@
 
 ## Sobre o projeto
 
+[Link do vídeo do projeto](https://youtu.be/nBLm5Y4RCMg)
+
 Foi desenvolvido um sistema de gerenciamento de clientes de uma academia, onde
 é possível visualizar os clientes já cadastrados, cadastrar novos clientes,
 editar um cliente e deletar um cliente.
