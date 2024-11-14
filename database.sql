@@ -38,12 +38,12 @@ INSERT INTO discounts (id, duration, discount_percentage) VALUES
     (UUID(), 12, 20);
 
 INSERT INTO clients (id, name, email, phone, membership_id, discount_id) VALUES 
-    (UUID(), 'João Teste', 'joao.teste@example.com', '11900000000',
+    (UUID(), 'João Carvalho', 'joao.carvalho@gmail.com', '11943545213',
         (SELECT id FROM memberships WHERE name = 'Basic'),
         (SELECT id FROM discounts WHERE duration = '1')),
-    (UUID(), 'Lucas Teste', 'lucas@teste@example.com', '11900000000',
+    (UUID(), 'Lucas Vinícius', 'lucas@vinicius@gmail.com', '19932985647',
         (SELECT id FROM memberships WHERE name = 'Silver'),
         (SELECT id FROM discounts WHERE duration = '3')),
-    (UUID(), 'Júlia Teste', 'julia.teste@example.com', '11900000000',
+    (UUID(), 'Júlia Martins', 'julia.martins@gmail.com', '19943567890',
         (SELECT id FROM memberships WHERE name = 'Gold'),
         (SELECT id FROM discounts WHERE duration = '6'));
